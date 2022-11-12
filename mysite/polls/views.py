@@ -1,9 +1,9 @@
 from django.shortcuts import render
-
-
-# Create your views here.
 from django.http import HttpResponse
 from .models import ToDoList, Item
+# from polls import forms
+from .forms import CreateNewList
+# Create your views here.
 
 def index(response, id):
     ls = ToDoList.objects.get(id=id)
@@ -14,3 +14,7 @@ def index2(response):
 
 def home(response):
     return render(response, "main/home.html", {})
+
+def create(request):
+    form = CreateNewList()
+    return render(request, "main/create.html", {"form":form})
